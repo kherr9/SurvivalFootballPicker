@@ -47,6 +47,10 @@ namespace FootballPicker.ConsoleApp
                         if (otherTeam[0] == '@')
                             continue;
 
+                        // skip bye weeks
+                        if (otherTeam == "BYE")
+                            continue;
+
                         result.Add(new Match
                         {
                             Week = week,

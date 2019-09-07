@@ -8,8 +8,6 @@ namespace FootballPicker.ConsoleApp
     {
         static void Main()
         {
-            Console.WriteLine("Hello World!");
-
             var ranks = Data.LoadRankings();
             var matches = Data.LoadMatches();
 
@@ -30,8 +28,10 @@ namespace FootballPicker.ConsoleApp
 
             var picks = new List<Selection>();
 
+            var week = 0;
             foreach (var weekMatches in matchesByWeek)
             {
+                week++;
                 var selections = new List<Selection>();
 
                 foreach (var match in weekMatches)
@@ -47,20 +47,24 @@ namespace FootballPicker.ConsoleApp
 
                     selections.Add(new Selection
                     {
+                        Week = week,
                         Team = homeTeam,
                         Ranking = homeTeamRanking,
                         Value = awayTeamRanking - homeTeamRanking + homeFieldAdvantageWeight,
                         Opponent = awayTeam,
-                        OpponentRanking = awayTeamRanking
+                        OpponentRanking = awayTeamRanking,
+                        HomeTeam = homeTeam
                     });
 
                     selections.Add(new Selection
                     {
+                        Week = week,
                         Team = awayTeam,
                         Ranking = awayTeamRanking,
                         Value = homeTeamRanking - awayTeamRanking - homeFieldAdvantageWeight,
                         Opponent = homeTeam,
-                        OpponentRanking = homeTeamRanking
+                        OpponentRanking = homeTeamRanking,
+                        HomeTeam = homeTeam
                     });
                 }
 
@@ -75,22 +79,42 @@ namespace FootballPicker.ConsoleApp
                 picks.Add(pick);
             }
 
-            for (var i = 0; i < picks.Count; i++)
+            foreach (var pick in picks)
             {
-                var week = i + 1;
-                var pick = picks[i];
-
-                Console.WriteLine($"Week:{week,-2} Team:{pick.Team,-3} TeamRank:{pick.Ranking,-2} Value:{pick.Value,-2} Opponent:{pick.Opponent,-3} OpponentRanking:{pick.OpponentRanking,-2}");
+                Console.WriteLine(pick.Print());
             }
         }
 
         private struct Selection
         {
+            public int Week;
             public string Team;
             public int Ranking;
             public int Value;
             public string Opponent;
             public int OpponentRanking;
+            public string HomeTeam { get; set; }
+
+            public string Print()
+            {
+                return $"Week:{Week,-2} Team:{TeamFormatted(),-4} TeamRank:{Ranking,-2} Value:{Value,-2} Opponent:{OpponentFormatted(),-4} OpponentRanking:{OpponentRanking,-2}";
+            }
+
+            private string TeamFormatted()
+            {
+                if (Team == HomeTeam)
+                    return $"@{Team}";
+
+                return Team;
+            }
+
+            private string OpponentFormatted()
+            {
+                if (Opponent == HomeTeam)
+                    return $"@{Opponent}";
+
+                return Opponent;
+            }
         }
     }
 }

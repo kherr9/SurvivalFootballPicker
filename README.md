@@ -1,7 +1,7 @@
 # SurvivalFootballPicker
 App to help w/ survival football selections
 
-
+```
 Week:1  Team:PHI TeamRank:5  Value:27 Opponent:WSH OpponentRanking:28
 Week:2  Team:NE  TeamRank:1  Value:27 Opponent:MIA OpponentRanking:32
 Week:3  Team:DAL TeamRank:7  Value:29 Opponent:MIA OpponentRanking:32
@@ -19,3 +19,4 @@ Week:14 Team:NYJ TeamRank:22 Value:14 Opponent:MIA OpponentRanking:32
 Week:15 Team:NYG TeamRank:27 Value:9  Opponent:MIA OpponentRanking:32
 Week:16 Team:LAC TeamRank:10 Value:19 Opponent:OAK OpponentRanking:25
 Week:17 Team:HOU TeamRank:13 Value:11 Opponent:TEN OpponentRanking:20
+```

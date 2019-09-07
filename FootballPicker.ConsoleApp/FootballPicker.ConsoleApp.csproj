@@ -9,4 +9,10 @@
     <PackageReference Include="CsvHelper" Version="12.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="*.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

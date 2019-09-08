@@ -2,6 +2,7 @@
 App to help w/ survival football selections
 
 ```
+*** greedy 1 ***
 Week:1  Team:@PHI TeamRank:5  Value:27 Opponent:WSH  OpponentRanking:28
 Week:2  Team:NE   TeamRank:1  Value:27 Opponent:@MIA OpponentRanking:32
 Week:3  Team:@DAL TeamRank:7  Value:29 Opponent:MIA  OpponentRanking:32
@@ -23,7 +24,7 @@ Week:17 Team:@HOU TeamRank:13 Value:11 Opponent:TEN  OpponentRanking:20
 
 
 ```
-*** simple greedy 2 ***
+*** greedy 2 ***
 Week:1  Team:@PHI TeamRank:5  Value:27 Opponent:WSH  OpponentRank:28
 Week:2  Team:@BAL TeamRank:11 Value:24 Opponent:ARI  OpponentRank:31
 Week:3  Team:@DAL TeamRank:7  Value:29 Opponent:MIA  OpponentRank:32

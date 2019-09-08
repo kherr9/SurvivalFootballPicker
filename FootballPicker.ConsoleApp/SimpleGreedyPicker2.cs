@@ -53,6 +53,9 @@ namespace FootballPicker.ConsoleApp
                 };
             }).ToList();
 
+            // only worry about the first 10 weeks
+            selections = selections.Where(s => s.Week <= 10).ToList();
+
             var picks = new List<Selection>();
 
             while (selections.Any())
@@ -60,13 +63,8 @@ namespace FootballPicker.ConsoleApp
                 // find the max pick for each week
                 var pick = selections
                     .GroupBy(s => s.Week)
-                    .Select(grp =>
-                        grp.OrderByDescending(s => s.Value)
-                            .ThenByDescending(s => s.Ranking)
-                            .First())
-                    .OrderBy(s => s.Value)
-                    .ThenBy(s => s.Ranking)
-                    .First();
+                    .Select(grp => grp.Max())
+                    .Min();
 
                 picks.Add(pick);
 
@@ -75,13 +73,13 @@ namespace FootballPicker.ConsoleApp
                 selections = selections.Where(s => picks.All(p => p.Week != s.Week)).ToList();
             }
 
-            foreach (var pick in picks.OrderBy(p => p.Week))
+            foreach (var pick in picks.OrderBy(x => x.Week))
             {
                 Console.WriteLine(pick.Print());
             }
         }
 
-        private struct Selection
+        private struct Selection : IComparable<Selection>
         {
             public int Week;
             public string Team;
@@ -95,6 +93,8 @@ namespace FootballPicker.ConsoleApp
             {
                 return $"Week:{Week,-2} Team:{TeamFormatted(),-4} TeamRank:{Ranking,-2} Value:{Value,-2} Opponent:{OpponentFormatted(),-4} OpponentRank:{OpponentRanking,-2}";
             }
+
+            private bool HomeFieldAdvantage() => Team == HomeTeam;
 
             private string TeamFormatted()
             {
@@ -110,6 +110,17 @@ namespace FootballPicker.ConsoleApp
                     return $"@{Opponent}";
 
                 return Opponent;
+            }
+
+            public int CompareTo(Selection other)
+            {
+                var valueComparison = Value.CompareTo(other.Value);
+                if (valueComparison != 0) return valueComparison;
+
+                var homeFieldAdvantage = HomeFieldAdvantage().CompareTo(other.HomeFieldAdvantage());
+                if (homeFieldAdvantage != 0) return homeFieldAdvantage;
+
+                return Ranking.CompareTo(other.Ranking);
             }
         }
     }

@@ -60,10 +60,11 @@ namespace FootballPicker.ConsoleApp
 
             while (selections.Any())
             {
-                // find the max pick for each week
                 var pick = selections
                     .GroupBy(s => s.Week)
+                    // get the max match for each week
                     .Select(grp => grp.Max())
+                    // select the min match from the max matches from each week
                     .Min();
 
                 picks.Add(pick);

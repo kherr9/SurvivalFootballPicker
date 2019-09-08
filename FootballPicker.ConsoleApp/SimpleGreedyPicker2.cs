@@ -14,7 +14,6 @@ namespace FootballPicker.ConsoleApp
         {
             var rankingLookup = rankings.ToDictionary(r => r.Team, r => r.Ranking);
 
-            // calculate selection heuristic
             var selections = input.SelectMany(match =>
             {
                 var week = match.Week;

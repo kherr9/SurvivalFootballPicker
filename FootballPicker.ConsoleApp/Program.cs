@@ -9,8 +9,9 @@ namespace FootballPicker.ConsoleApp
             var ranks = Data.LoadRankings();
             var matches = Data.LoadMatches();
 
-            var picks = new string[]
+            var picks = new[]
             {
+                "BAL"
             };
 
 

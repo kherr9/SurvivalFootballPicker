@@ -10,9 +10,15 @@ namespace FootballPicker.ConsoleApp
     /// </summary>
     public static class SimpleGreedyPicker2
     {
-        public static void Choose(Match[] input, Rank[] rankings)
+        public static void Choose(Match[] input, Rank[] rankings, string[] previousPicks)
         {
             var rankingLookup = rankings.ToDictionary(r => r.Team, r => r.Ranking);
+
+            input = input.Where(i => i.Week >= previousPicks.Length + 1).ToArray();
+            foreach (var previousPick in previousPicks)
+            {
+                input = input.Where(i => !i.IsPlaying(previousPick)).ToArray();
+            }
 
             var selections = input.SelectMany(match =>
             {

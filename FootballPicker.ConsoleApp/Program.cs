@@ -9,11 +9,16 @@ namespace FootballPicker.ConsoleApp
             var ranks = Data.LoadRankings();
             var matches = Data.LoadMatches();
 
+            var picks = new string[]
+            {
+            };
+
+
             Console.WriteLine("\n*** simple greedy ***");
             SimpleGreedyPicker.Choose(matches, ranks);
 
             Console.WriteLine("\n*** simple greedy 2 ***");
-            SimpleGreedyPicker2.Choose(matches, ranks);
+            SimpleGreedyPicker2.Choose(matches, ranks, picks);
         }
     }
 }

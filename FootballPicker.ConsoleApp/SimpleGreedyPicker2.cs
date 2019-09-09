@@ -53,7 +53,7 @@ namespace FootballPicker.ConsoleApp
             }).ToList();
 
             // only worry about the first 10 weeks
-            selections = selections.Where(s => s.Week <= 10).ToList();
+            //selections = selections.Where(s => s.Week <= 10).ToList();
 
             var picks = new List<Selection>();
 
@@ -77,6 +77,14 @@ namespace FootballPicker.ConsoleApp
             {
                 Console.WriteLine(pick.Print());
             }
+
+            var avg = picks.Select(p => p.Value).Average();
+            var min = picks.Select(p => p.Value).Min();
+            var max = picks.Select(p => p.Value).Max();
+
+            Console.WriteLine($"avg:{avg}");
+            Console.WriteLine($"min:{min}");
+            Console.WriteLine($"max:{max}");
         }
 
         private struct Selection : IComparable<Selection>
@@ -116,9 +124,6 @@ namespace FootballPicker.ConsoleApp
             {
                 var valueComparison = Value.CompareTo(other.Value);
                 if (valueComparison != 0) return valueComparison;
-
-                var homeFieldAdvantage = HomeFieldAdvantage().CompareTo(other.HomeFieldAdvantage());
-                if (homeFieldAdvantage != 0) return homeFieldAdvantage;
 
                 return Ranking.CompareTo(other.Ranking);
             }

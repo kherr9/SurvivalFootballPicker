@@ -1,6 +1,10 @@
 # SurvivalFootballPicker
 App to help w/ survival football selections
 
+```
+Actual Picks:
+Week:1  Team:BAL
+```
 
 ```
 *** simple greedy 2 ***

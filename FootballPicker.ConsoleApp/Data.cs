@@ -8,14 +8,15 @@ namespace FootballPicker.ConsoleApp
     {
         public static Rank[] LoadRankings()
         {
+            var rankPosition = 0;
+
             return File.ReadAllLines("ranking.csv")
-                .Skip(1)
                 .Where(line => !string.IsNullOrWhiteSpace(line))
                 .Select(line => line.Split(','))
                 .Select(row => new Rank
                 {
                     Team = row[0],
-                    Ranking = int.Parse(row[1])
+                    Ranking = ++rankPosition
                 })
                 .ToArray();
         }

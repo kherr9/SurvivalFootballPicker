@@ -31,7 +31,7 @@ namespace FootballPicker.ConsoleApp
                 var awayTeamRanking = rankingLookup[awayTeam];
 
                 // FACT 60% of games are won at home
-                var homeFieldAdvantageWeight = ((decimal)10 * (rankings.Length) / 100) / 2;
+                var homeFieldAdvantageWeight = 2;
 
                 return new List<Selection>
                 {

@@ -4,8 +4,8 @@ App to help w/ survival football selections
 ```
 Actual Picks:
 Week:1  Team:BAL
-Week:1  Team:CAR
-Week:1  Team:DAL
+Week:2  Team:CAR
+Week:3  Team:DAL
 ```
 
 ```

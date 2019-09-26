@@ -9,6 +9,7 @@ Week:3  Team:DAL
 ```
 
 ```
+*** simple greedy 2 ***
 Week:4  Team:@LAR TeamRank:3  Value:23 Opponent:TB   OpponentRank:24
 Week:5  Team:@NO  TeamRank:6  Value:20 Opponent:TB   OpponentRank:24
 Week:6  Team:@GB  TeamRank:5  Value:14 Opponent:DET  OpponentRank:17

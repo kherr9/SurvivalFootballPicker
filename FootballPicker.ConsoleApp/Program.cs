@@ -11,7 +11,9 @@ namespace FootballPicker.ConsoleApp
 
             var picks = new[]
             {
-                "BAL"
+                "BAL",
+                "CAR",
+                "DAL"
             };
 
 
